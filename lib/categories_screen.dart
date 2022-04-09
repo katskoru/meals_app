@@ -8,8 +8,13 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("MyMeals")),
+      appBar: AppBar(
+          title: const Text(
+        "MyMeals",
+        style: TextStyle(fontSize: 30),
+      )),
       body: GridView(
+        padding: EdgeInsets.all(20),
         children: dummyCategories
             .map((catData) =>
                 CategoryItem(title: catData.title, color: catData.color))
