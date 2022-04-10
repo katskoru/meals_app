@@ -3,14 +3,15 @@ import 'package:meals_app/meals_category_screen.dart';
 
 class CategoryItem extends StatelessWidget {
   final String title;
+  final String id;
   final Color color;
-  const CategoryItem({Key? key, required this.title, required this.color})
+  const CategoryItem(
+      {Key? key, required this.title, required this.color, required this.id})
       : super(key: key);
 
   selectCategory(BuildContext ctx) {
-    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return MealsCategoryScreen();
-    }));
+    Navigator.of(ctx)
+        .pushNamed("/meals-category", arguments: {"id": id, "title": title});
   }
 
   @override
@@ -21,21 +22,12 @@ class CategoryItem extends StatelessWidget {
         selectCategory(context);
       },
       child: Container(
-        height: 40,
         padding: const EdgeInsets.all(15),
         child: Text(
           title,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: color.withOpacity(0.4),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: Offset(0, 5),
-              )
-            ],
             borderRadius: BorderRadius.circular(15),
             gradient: LinearGradient(
                 colors: [color.withOpacity(0.5), color],
