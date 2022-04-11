@@ -16,6 +16,39 @@ class MealItem extends StatelessWidget {
       required this.complexity,
       required this.affordability})
       : super(key: key);
+
+  String get ComplexityText {
+    switch (complexity) {
+      case Complexity.Simple:
+        return "Simple";
+        break;
+      case Complexity.Challenging:
+        return "Challenging";
+        break;
+      case Complexity.Hard:
+        return "Hard";
+        break;
+      default:
+        return "Unknown";
+    }
+  }
+
+  String get AffordabilityText {
+    switch (affordability) {
+      case Affordability.Affordable:
+        return "Affordable";
+        break;
+      case Affordability.Luxurious:
+        return "Expensive";
+        break;
+      case Affordability.Pricey:
+        return "Pricey";
+        break;
+      default:
+        return "Unknown";
+    }
+  }
+
   selectMeal() {}
   @override
   Widget build(BuildContext context) {
@@ -47,7 +80,8 @@ class MealItem extends StatelessWidget {
               child: Container(
                 width: 300,
                 color: Colors.black45,
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                 child: Text(
                   title,
                   style: const TextStyle(fontSize: 26, color: Colors.white),
@@ -57,6 +91,35 @@ class MealItem extends StatelessWidget {
               ),
             ),
           ]),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(children: [
+                  Icon(Icons.schedule),
+                  SizedBox(
+                    width: 6,
+                  ),
+                  Text("$duration min"),
+                ]),
+                Row(children: [
+                  Icon(Icons.work),
+                  SizedBox(
+                    width: 6,
+                  ),
+                  Text(ComplexityText),
+                ]),
+                Row(children: [
+                  Icon(Icons.attach_money),
+                  SizedBox(
+                    width: 6,
+                  ),
+                  Text(AffordabilityText),
+                ]),
+              ],
+            ),
+          ),
         ]),
       ),
     );
