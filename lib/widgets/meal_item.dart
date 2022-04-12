@@ -106,22 +106,22 @@ class MealItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Row(children: [
-                  Icon(Icons.schedule),
-                  SizedBox(
+                  const Icon(Icons.schedule),
+                  const SizedBox(
                     width: 6,
                   ),
                   Text("$duration min"),
                 ]),
                 Row(children: [
-                  Icon(Icons.work),
-                  SizedBox(
+                  const Icon(Icons.work),
+                  const SizedBox(
                     width: 6,
                   ),
                   Text(ComplexityText),
                 ]),
                 Row(children: [
-                  Icon(Icons.attach_money),
-                  SizedBox(
+                  const Icon(Icons.attach_money),
+                  const SizedBox(
                     width: 6,
                   ),
                   Text(AffordabilityText),

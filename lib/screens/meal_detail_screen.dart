@@ -21,8 +21,8 @@ class MealDetailScreen extends StatelessWidget {
           color: Colors.amber,
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(15)),
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: child,
       height: 200,
       width: 300,
@@ -35,7 +35,7 @@ class MealDetailScreen extends StatelessWidget {
     final selectedMeal = dummyMeals.firstWhere((meal) => meal.id == mealId);
     return Scaffold(
         appBar: AppBar(
-          title: Text("${selectedMeal.title}"),
+          title: Text("$selectedMeal.title"),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -76,7 +76,7 @@ class MealDetailScreen extends StatelessWidget {
                         ),
                         title: Text(selectedMeal.steps[index]),
                       ),
-                      Divider(color: Colors.grey),
+                      const Divider(color: Colors.grey),
                     ],
                   ),
                   itemCount: selectedMeal.steps.length,
