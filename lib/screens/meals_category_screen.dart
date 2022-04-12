@@ -9,7 +9,7 @@ class MealsCategoryScreen extends StatelessWidget {
   //     : super(key: key);
   // final String categoryID;
   // final String categoryTitle;
-
+  static const routeName = "/meals-category";
   @override
   Widget build(BuildContext context) {
     final routeArgs =
@@ -27,6 +27,7 @@ class MealsCategoryScreen extends StatelessWidget {
         itemCount: categoryMeals.length,
         itemBuilder: (BuildContext context, int index) {
           return MealItem(
+              id: categoryMeals[index].id,
               title: categoryMeals[index].title,
               imageUrl: categoryMeals[index].imgUrl,
               duration: categoryMeals[index].duration,
