@@ -15,7 +15,7 @@ class MainDrawer extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -38,14 +38,20 @@ class MainDrawer extends StatelessWidget {
               width: double.infinity,
               color: Theme.of(context).colorScheme.onBackground,
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.all(10)),
+              padding: const EdgeInsets.all(10)),
           const SizedBox(
             height: 20,
           ),
-          buildListTile("Meals", Icons.restaurant,
-              () => Navigator.of(context).pushNamed("/") as Function),
-          buildListTile("Filters", Icons.settings,
-              () => Navigator.of(context).pushNamed(FiltersScreen.routeName)),
+          buildListTile(
+              "Meals",
+              Icons.restaurant,
+              () =>
+                  Navigator.of(context).pushReplacementNamed("/") as Function),
+          buildListTile(
+              "Filters",
+              Icons.settings,
+              () => Navigator.of(context)
+                  .pushReplacementNamed(FiltersScreen.routeName)),
         ],
       ),
     );
