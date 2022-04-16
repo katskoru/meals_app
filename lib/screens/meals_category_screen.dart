@@ -5,11 +5,6 @@ import 'package:meals_app/widgets/meal_item.dart';
 import '../models/meal.dart';
 
 class MealsCategoryScreen extends StatefulWidget {
-  // const MealsCategoryScreen(
-  //     {Key? key, required this.categoryID, required this.categoryTitle})
-  //     : super(key: key);
-  // final String categoryID;
-  // final String categoryTitle;
   static const routeName = "/meals-category";
 
   @override
@@ -17,28 +12,24 @@ class MealsCategoryScreen extends StatefulWidget {
 }
 
 class _MealsCategoryScreenState extends State<MealsCategoryScreen> {
-  String? categoryTitle;
-  List<Meal>? displayedMeals;
-  var _loadedInitData = false;
-
+  List? categoryTitle = [];
+  List<Meal>? displayedMeals = [];
   @override
   void didChangeDependencies() {
-    if (_loadedInitData == false) {
-      final routeArgs =
-          ModalRoute.of(context)?.settings.arguments as Map<String, String>;
-      final categoryTitle = routeArgs["title"];
-      final categoryID = routeArgs["id"];
-      final displayedMeals = dummyMeals
-          .where((meal) => meal.categories.contains(categoryID))
-          .toList();
-      _loadedInitData = true;
-    }
-
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
+    final routeArgs =
+        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+    final categoryTitleF = routeArgs["title"];
+    final categoryID = routeArgs["id"];
+    final displayedMealsF = dummyMeals
+        .where((meal) => meal.categories.contains(categoryID))
+        .toList();
+
+    displayedMeals!.addAll(displayedMealsF);
+    categoryTitle!.add(categoryTitleF);
   }
 
-  void _removeMeal(String mealId) {
+  _removeMeal(String mealId) {
     setState(() {
       displayedMeals!.removeWhere((meal) => meal.id == mealId);
     });
@@ -48,7 +39,7 @@ class _MealsCategoryScreenState extends State<MealsCategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(categoryTitle!),
+        title: Text(categoryTitle![0]),
       ),
       body: ListView.builder(
         itemCount: displayedMeals!.length,

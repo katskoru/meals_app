@@ -35,7 +35,7 @@ class MealDetailScreen extends StatelessWidget {
     final selectedMeal = dummyMeals.firstWhere((meal) => meal.id == mealId);
     return Scaffold(
       appBar: AppBar(
-        title: Text("$selectedMeal.title"),
+        title: Text("${selectedMeal.title}"),
       ),
       body: SingleChildScrollView(
         child: Column(
