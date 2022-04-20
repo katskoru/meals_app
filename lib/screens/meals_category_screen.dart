@@ -7,6 +7,8 @@ import '../models/meal.dart';
 class MealsCategoryScreen extends StatefulWidget {
   static const routeName = "/meals-category";
 
+  const MealsCategoryScreen({Key? key}) : super(key: key);
+
   @override
   State<MealsCategoryScreen> createState() => _MealsCategoryScreenState();
 }
