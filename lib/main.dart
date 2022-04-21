@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  _toggleFav(String mealId) {
+  void _toggleFav(String mealId) {
     final existingIndex = _favMeals.indexWhere((meal) => meal.id == mealId);
     if (existingIndex >= 0) {
       setState(() {
@@ -60,6 +60,10 @@ class _MyAppState extends State<MyApp> {
         _favMeals.add(dummyMeals.firstWhere((meal) => meal.id == mealId));
       });
     }
+  }
+
+  bool _isMealFav(String id) {
+    return _favMeals.any((meal) => meal.id == id);
   }
 
   @override
@@ -86,7 +90,8 @@ class _MyAppState extends State<MyApp> {
         "/": (ctx) => TabsScreen(favMeals: _favMeals),
         MealsCategoryScreen.routeName: (ctx) =>
             MealsCategoryScreen(availableMeals: _availableMeals),
-        MealDetailScreen.routeName: (ctx) => const MealDetailScreen(),
+        MealDetailScreen.routeName: (ctx) =>
+            MealDetailScreen(toggleFav: _toggleFav, isFav: _isMealFav),
         FiltersScreen.routeName: (ctx) => FiltersScreen(
               saveFilters: _setFilters,
               currentFilters: _filters,
