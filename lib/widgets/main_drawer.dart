@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/filters_screen.dart';
 
@@ -42,11 +40,8 @@ class MainDrawer extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          buildListTile(
-              "Meals",
-              Icons.restaurant,
-              () =>
-                  Navigator.of(context).pushReplacementNamed("/") as Function),
+          buildListTile("Meals", Icons.restaurant,
+              () => Navigator.of(context).pushReplacementNamed("/") as Future),
           buildListTile(
               "Filters",
               Icons.settings,

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({Key? key, required this.saveFilters}) : super(key: key);
+  const FiltersScreen(
+      {Key? key, required this.saveFilters, required this.currentFilters})
+      : super(key: key);
   static const routeName = "/filters";
-  final VoidCallback saveFilters;
+  final Function? saveFilters;
+  final Map<String, bool> currentFilters;
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
 }
@@ -16,20 +19,39 @@ class _FiltersScreenState extends State<FiltersScreen> {
   bool _lactoseFree = false;
 
   @override
+  void initState() {
+    _glutenFree = widget.currentFilters["gluten"]!;
+    _lactoseFree = widget.currentFilters["lactose"]!;
+    _vegan = widget.currentFilters["vegan"]!;
+    _vegeterian = widget.currentFilters["vegetarian"]!;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("My Filters"),
+          title: const Text("My Filters"),
           actions: [
-            IconButton(onPressed: widget.saveFilters, icon: Icon(Icons.save)),
+            IconButton(
+                onPressed: () {
+                  final selectedFilters = {
+                    "gluten": _glutenFree,
+                    "lactose": _lactoseFree,
+                    "vegan": _vegan,
+                    "vegetarian": _vegeterian,
+                  };
+                  widget.saveFilters!(selectedFilters);
+                },
+                icon: const Icon(Icons.save)),
           ],
         ),
-        drawer: MainDrawer(),
+        drawer: const MainDrawer(),
         body: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(20),
-              child: Text("Adjust your meal selection"),
+              padding: const EdgeInsets.all(20),
+              child: const Text("Adjust your meal selection"),
             ),
             Expanded(
                 child: ListView(
@@ -41,7 +63,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                       _glutenFree = newValue;
                     });
                   },
-                  title: Text("Gluten Free"),
+                  title: const Text("Gluten Free"),
                 ),
                 SwitchListTile(
                   value: _vegeterian,

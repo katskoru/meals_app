@@ -86,7 +86,7 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
+        child: const Icon(Icons.delete),
         onPressed: () {
           Navigator.of(context).pop(mealId);
         },
