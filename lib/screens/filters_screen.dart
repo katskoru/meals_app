@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({Key? key}) : super(key: key);
+  const FiltersScreen({Key? key, required this.saveFilters}) : super(key: key);
   static const routeName = "/filters";
-
+  final VoidCallback saveFilters;
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
 }
@@ -15,20 +15,14 @@ class _FiltersScreenState extends State<FiltersScreen> {
   bool _vegan = false;
   bool _lactoseFree = false;
 
-  Widget _buildSwitchListTile(
-      String title, bool currentValue, Function updateValue) {
-    return SwitchListTile(
-      value: currentValue,
-      onChanged: updateValue(),
-      title: Text(title),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text("My Filters"),
+          actions: [
+            IconButton(onPressed: widget.saveFilters, icon: Icon(Icons.save)),
+          ],
         ),
         drawer: MainDrawer(),
         body: Column(
@@ -50,31 +44,31 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   title: Text("Gluten Free"),
                 ),
                 SwitchListTile(
-                  value: _glutenFree,
+                  value: _vegeterian,
                   onChanged: (newValue) {
                     setState(() {
                       _vegeterian = newValue;
                     });
                   },
-                  title: Text("Vegetarian"),
+                  title: const Text("Vegetarian"),
                 ),
                 SwitchListTile(
-                  value: _glutenFree,
+                  value: _vegan,
                   onChanged: (newValue) {
                     setState(() {
                       _vegan = newValue;
                     });
                   },
-                  title: Text("Vegan"),
+                  title: const Text("Vegan"),
                 ),
                 SwitchListTile(
-                  value: _glutenFree,
+                  value: _lactoseFree,
                   onChanged: (newValue) {
                     setState(() {
                       _lactoseFree = newValue;
                     });
                   },
-                  title: Text("Lactose Free"),
+                  title: const Text("Lactose Free"),
                 ),
               ],
             ))
