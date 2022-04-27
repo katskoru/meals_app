@@ -25,7 +25,7 @@ class MainDrawer extends StatelessWidget {
         children: [
           Container(
               child: Text(
-                "cook",
+                "Cookbook",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,

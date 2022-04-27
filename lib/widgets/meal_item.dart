@@ -82,11 +82,21 @@ class MealItem extends StatelessWidget {
                 topLeft: Radius.circular(15),
                 topRight: Radius.circular(15),
               ),
-              child: Image.network(
-                imageUrl,
-                height: 250,
-                width: double.infinity,
-                fit: BoxFit.cover,
+              child: ShaderMask(
+                shaderCallback: (rect) {
+                  return LinearGradient(
+                    begin: Alignment.center,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black, Colors.transparent],
+                  ).createShader(Rect.fromLTRB(0, 0, 0, rect.height));
+                },
+                blendMode: BlendMode.dstIn,
+                child: Image.network(
+                  imageUrl,
+                  height: 250,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Positioned(

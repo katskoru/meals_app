@@ -46,9 +46,19 @@ class MealDetailScreen extends StatelessWidget {
             Container(
               height: 300,
               width: double.infinity,
-              child: Image.network(
-                selectedMeal.imgUrl,
-                fit: BoxFit.cover,
+              child: ShaderMask(
+                shaderCallback: (rect) {
+                  return const LinearGradient(
+                    begin: Alignment.center,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black, Colors.transparent],
+                  ).createShader(Rect.fromLTRB(0, 0, 0, rect.height));
+                },
+                blendMode: BlendMode.dstIn,
+                child: Image.network(
+                  selectedMeal.imgUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             buildSectionTitle(context, "Ingredients"),
