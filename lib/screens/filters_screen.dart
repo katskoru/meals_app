@@ -33,6 +33,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         appBar: AppBar(
           title: const Text("My Filters"),
           actions: [
+            const Center(child: Text("Save your choices")),
             IconButton(
                 onPressed: () {
                   final selectedFilters = {
@@ -47,54 +48,65 @@ class _FiltersScreenState extends State<FiltersScreen> {
           ],
         ),
         drawer: const MainDrawer(),
-        body: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(20),
-              child: const Text("Adjust your meal selection"),
-            ),
-            Expanded(
-                child: ListView(
-              children: [
-                SwitchListTile(
-                  value: _glutenFree,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _glutenFree = newValue;
-                    });
-                  },
-                  title: const Text("Gluten Free"),
-                ),
-                SwitchListTile(
-                  value: _vegeterian,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _vegeterian = newValue;
-                    });
-                  },
-                  title: const Text("Vegetarian"),
-                ),
-                SwitchListTile(
-                  value: _vegan,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _vegan = newValue;
-                    });
-                  },
-                  title: const Text("Vegan"),
-                ),
-                SwitchListTile(
-                  value: _lactoseFree,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _lactoseFree = newValue;
-                    });
-                  },
-                  title: const Text("Lactose Free"),
-                ),
-              ],
-            ))
-          ],
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                opacity: 70,
+                image: NetworkImage(
+                    "https://images.pexels.com/photos/262896/pexels-photo-262896.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),
+                fit: BoxFit.cover),
+          ),
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20),
+                child: const Text("Adjust your meal selection"),
+              ),
+              Expanded(
+                  child: ListView(
+                children: [
+                  SwitchListTile(
+                    value: _glutenFree,
+                    onChanged: (newValue) {
+                      setState(() {
+                        _glutenFree = newValue;
+                      });
+                    },
+                    title: const Text("Gluten Free"),
+                  ),
+                  SwitchListTile(
+                    value: _vegeterian,
+                    onChanged: (newValue) {
+                      setState(() {
+                        _vegeterian = newValue;
+                      });
+                    },
+                    title: const Text("Vegetarian"),
+                  ),
+                  SwitchListTile(
+                    value: _vegan,
+                    onChanged: (newValue) {
+                      setState(() {
+                        _vegan = newValue;
+                      });
+                    },
+                    title: const Text("Vegan"),
+                  ),
+                  SwitchListTile(
+                    value: _lactoseFree,
+                    onChanged: (newValue) {
+                      setState(() {
+                        _lactoseFree = newValue;
+                      });
+                    },
+                    title: const Text("Lactose Free"),
+                  ),
+                ],
+              ))
+            ],
+          ),
         ));
   }
 }

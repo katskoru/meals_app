@@ -85,6 +85,7 @@ class MealDetailScreen extends StatelessWidget {
                       iconColor: Colors.deepPurple,
                       tileColor: Colors.white,
                       leading: CircleAvatar(
+                        backgroundColor: Colors.cyanAccent,
                         child: Text("${index + 1}"),
                       ),
                       title: Text(selectedMeal.steps[index]),

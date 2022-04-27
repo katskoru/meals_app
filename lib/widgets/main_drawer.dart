@@ -21,6 +21,7 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.amberAccent,
       child: Column(
         children: [
           Container(
@@ -34,7 +35,7 @@ class MainDrawer extends StatelessWidget {
               ),
               height: 120,
               width: double.infinity,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Colors.amber,
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.all(10)),
           const SizedBox(

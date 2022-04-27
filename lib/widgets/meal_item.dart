@@ -84,7 +84,7 @@ class MealItem extends StatelessWidget {
               ),
               child: ShaderMask(
                 shaderCallback: (rect) {
-                  return LinearGradient(
+                  return const LinearGradient(
                     begin: Alignment.center,
                     end: Alignment.bottomCenter,
                     colors: [Colors.black, Colors.transparent],

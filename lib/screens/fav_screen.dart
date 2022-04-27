@@ -9,22 +9,33 @@ class FavScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (favMeals.isEmpty) {
-      return Container(
-        child: Text("Favs"),
+      return const Center(
+        child: Text("Select your favourite meal"),
       );
     } else {
-      return ListView.builder(
-        itemCount: favMeals.length,
-        itemBuilder: (BuildContext context, int index) {
-          return MealItem(
-            id: favMeals[index].id,
-            title: favMeals[index].title,
-            imageUrl: favMeals[index].imgUrl,
-            duration: favMeals[index].duration,
-            complexity: favMeals[index].complexity,
-            affordability: favMeals[index].affordability,
-          );
-        },
+      return Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              opacity: 70,
+              image: NetworkImage(
+                  "https://images.pexels.com/photos/262896/pexels-photo-262896.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),
+              fit: BoxFit.cover),
+        ),
+        child: ListView.builder(
+          itemCount: favMeals.length,
+          itemBuilder: (BuildContext context, int index) {
+            return MealItem(
+              id: favMeals[index].id,
+              title: favMeals[index].title,
+              imageUrl: favMeals[index].imgUrl,
+              duration: favMeals[index].duration,
+              complexity: favMeals[index].complexity,
+              affordability: favMeals[index].affordability,
+            );
+          },
+        ),
       );
     }
   }
